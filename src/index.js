@@ -6,7 +6,7 @@ class App extends Component {
     render() {
       return (
         <div className="App">
-         <Pagination number={12}/>
+         <Pagination total={12} displayLimit={10} nextBackPair={false} initialFinalPair={true}/>
         </div>
       );
     }
