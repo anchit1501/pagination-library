@@ -26,17 +26,6 @@ class Pagination extends Component {
 
     }
 
-    ebiPagination = () => {
-        return (
-            <div className="alignCenter">
-                <a href="#" className="w3buttonActive" id="first" style={{ display: this.state.displayFirstLastPair ? 'inline-block' : 'none', pointerEvents: this.checkActive(1,'first') ? 'none' : 'auto', backgroundColor: this.checkActive(1) ? '#ffffff' : '#0E6DB5', color: this.checkActive(1) ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("first")}>&laquo;</a>
-                <a href="#" className="w3buttonActive" id="back" style={{ display: this.state.displayNextBackPair ? 'inline-block' : 'none', pointerEvents: this.checkActive(1,'back') ? 'none' : 'auto', backgroundColor: this.checkActive(1) ? '#ffffff' : '#0E6DB5', color: this.checkActive(1) ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("back")}>&lt;</a>
-                {this.state.currentItems}
-                <a href="#" className="w3buttonActive" id="next" style={{ display: this.state.displayNextBackPair ? 'inline-block' : 'none', pointerEvents: this.checkActive(this.state.length) ? 'none' : 'auto', backgroundColor: this.checkActive(this.state.length) ? '#ffffff' : '#0E6DB5', color: this.checkActive(this.state.length) ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("next")}>></a>
-                <a href="#" className="w3buttonActive" id="last" style={{ display: this.state.displayFirstLastPair ? 'inline-block' : 'none', pointerEvents: this.checkActive(this.state.length) ? 'none' : 'auto', backgroundColor: this.checkActive(this.state.length) ? '#ffffff' : '#0E6DB5', color: this.checkActive(this.state.length) ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("last")}>&raquo;</a>
-            </div>);
-    }
-
     calcPage = (id) => {
         if (this.state.activeIndex >= 10) {
 
@@ -107,7 +96,7 @@ class Pagination extends Component {
         let items = [];
         for (let number = initial; number <= final; number++) {
             items.push(
-                <a key={number} href="#" id={number.toString()} className="w3button" style={{pointerEvents:this.state.activeIndex===number?'none':'auto', backgroundColor: (this.state.activeIndex === number) ? "#0E6DB5" : "#ffffff", color: (this.state.activeIndex === number) ? "#ffffff" : "" }} onClick={() => this.calcPage(number)} >{number}</a>
+                <a key={number} href="#" id={number} className="w3button" style={{pointerEvents:this.state.activeIndex===number?'none':'auto', backgroundColor: (this.state.activeIndex === number) ? "#0E6DB5" : "#ffffff", color: (this.state.activeIndex === number) ? "#ffffff" : "" }} onClick={() => {console.log('check',this.checkActive(1));this.setState({activeIndex:number});this.calcPage(number)}}>{number}</a>
             );
 
         }
@@ -132,7 +121,16 @@ class Pagination extends Component {
     }
 
     render() {
-        return (this.ebiPagination());
+        console.log('abc',typeof(this.state.activeIndex),typeof(1),this.state.activeIndex);
+        return (
+            <div className="alignCenter">
+            <a href="#" className="w3buttonActive" id="first" style={{ display: this.state.displayFirstLastPair ? 'inline-block' : 'none', pointerEvents: this.state.activeIndex===1 ? 'none' : 'auto', backgroundColor: this.state.activeIndex===1 ? '#ffffff' : '#0E6DB5', color: this.state.activeIndex===1 ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("first")}>&laquo;</a>
+            <a href="#" className="w3buttonActive" id="back" style={{ display: this.state.displayNextBackPair ? 'inline-block' : 'none', pointerEvents: this.state.activeIndex===1 ? 'none' : 'auto', backgroundColor: this.state.activeIndex===1 ? '#ffffff' : '#0E6DB5', color: this.state.activeIndex===1 ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("back")}>&lt;</a>
+            {this.state.currentItems}
+            <a href="#" className="w3buttonActive" id="next" style={{ display: this.state.displayNextBackPair ? 'inline-block' : 'none', pointerEvents: this.checkActive(this.state.length) ? 'none' : 'auto', backgroundColor: this.checkActive(this.state.length) ? '#ffffff' : '#0E6DB5', color: this.checkActive(this.state.length) ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("next")}>></a>
+            <a href="#" className="w3buttonActive" id="last" style={{ display: this.state.displayFirstLastPair ? 'inline-block' : 'none', pointerEvents: this.checkActive(this.state.length) ? 'none' : 'auto', backgroundColor: this.checkActive(this.state.length) ? '#ffffff' : '#0E6DB5', color: this.checkActive(this.state.length) ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("last")}>&raquo;</a>
+            </div>
+            );
     }
 }
 export default Pagination;
