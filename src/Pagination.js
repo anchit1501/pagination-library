@@ -7,11 +7,12 @@ class Pagination extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            length: 10,
+            length: 15,
             activeIndex: 1,
-            currentItems: [],
+            currentItems: [<a id="0"></a>],
             displayFirstLastPair: true,
             displayNextBackPair: true,
+            pagePrompter:true
 
         }
     }
@@ -21,7 +22,8 @@ class Pagination extends Component {
             {
                 length: this.props.total,
                 displayFirstLastPair: this.props.nextBackPair,
-                displayNextBackPair: this.props.initialFinalPair
+                displayNextBackPair: this.props.initialFinalPair,
+                pagePrompter:this.props.pagePrompter
             }, () => this.pageList(1, 10));
 
     }
@@ -41,7 +43,7 @@ class Pagination extends Component {
 
             case "next": {
                 if (this.state.activeIndex > 9) {
-                    this.setState({ activeIndex: this.state.activeIndex + 1 }, () => { this.pageList(this.state.activeIndex - 8, this.state.activeIndex + 1); });
+                    this.setState({ activeIndex: this.state.activeIndex + 1 }, () => { this.pageList(this.state.activeIndex - 9, this.state.activeIndex); });
                 }
                 else if (this.state.activeIndex < 10) {
                     this.setState({ activeIndex: this.state.activeIndex + 1 }, () => { this.pageList(1, 10); });
@@ -116,6 +118,28 @@ class Pagination extends Component {
         }
     }
 
+    checkPrompter=(position)=>{
+        if(position=='initial'){
+            if(this.state.currentItems[0].props.id==1){
+                return('none');
+            }
+            else{
+                return('inline-block');
+            }
+        }
+        else if(position=='last') {
+            if(this.state.currentItems[this.state.currentItems.length-1].props.id==this.state.length){
+                return('none');
+            }
+            else{
+                return('inline-block');
+            }
+        }
+        else{
+            return ('inline-block');
+        }
+    }
+
     handleLangChange = () => {
         this.props.onSelectLanguage(this.state.activeIndex);
     }
@@ -126,7 +150,9 @@ class Pagination extends Component {
             <div className="alignCenter">
             <a href="#" className="w3buttonActive" id="first" style={{ display: this.state.displayFirstLastPair ? 'inline-block' : 'none', pointerEvents: this.state.activeIndex===1 ? 'none' : 'auto', backgroundColor: this.state.activeIndex===1 ? '#ffffff' : '#0E6DB5', color: this.state.activeIndex===1 ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("first")}>&laquo;</a>
             <a href="#" className="w3buttonActive" id="back" style={{ display: this.state.displayNextBackPair ? 'inline-block' : 'none', pointerEvents: this.state.activeIndex===1 ? 'none' : 'auto', backgroundColor: this.state.activeIndex===1 ? '#ffffff' : '#0E6DB5', color: this.state.activeIndex===1 ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("back")}>&lt;</a>
+            <div style={{display:this.state.pagePrompter?this.checkPrompter('initial'):'none',margin:'0 0.5%'}}>...</div>
             {this.state.currentItems}
+            <div style={{display:this.state.pagePrompter?this.checkPrompter('last'):'none',margin:'0 0.5%'}}>...</div>
             <a href="#" className="w3buttonActive" id="next" style={{ display: this.state.displayNextBackPair ? 'inline-block' : 'none', pointerEvents: this.state.activeIndex===this.state.length ? 'none' : 'auto', backgroundColor: this.state.activeIndex===this.state.length ? '#ffffff' : '#0E6DB5', color: this.state.activeIndex===this.state.length ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("next")}>></a>
             <a href="#" className="w3buttonActive" id="last" style={{ display: this.state.displayFirstLastPair ? 'inline-block' : 'none', pointerEvents: this.state.activeIndex===this.state.length ? 'none' : 'auto', backgroundColor: this.state.activeIndex===this.state.length ? '#ffffff' : '#0E6DB5', color: this.state.activeIndex===this.state.length ? '#0E6DB5' : '#ffffff' }} onClick={() => this.calcPage("last")}>&raquo;</a>
             </div>
