@@ -141,7 +141,7 @@ class Pagination extends Component {
     }
 
     handleLangChange = () => {
-        this.props.onSelectLanguage(this.state.activeIndex);
+        this.props.onPageChange(this.state.activeIndex);
     }
 
     render() {

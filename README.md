@@ -1,3 +1,14 @@
+This is a Simple Pagination Library created using React js which returns the page number selected by end-user
+
+## Available Features
+
+1. Total number of pages 
+2. Next Page & Previos Page Buttons
+3. Jump to First Page & Jump to Last Page Buttons
+4. Page Prompter
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

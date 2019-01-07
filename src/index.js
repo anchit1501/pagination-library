@@ -19,7 +19,7 @@ class App extends Component {
     render() {
       return (
         <div className="App">
-         <Pagination total={12}  nextBackPair={true} initialFinalPair={true} onSelectLanguage={this.handleLanguage} pagePrompter={true}/>
+         <Pagination total={20}  nextBackPair={true} initialFinalPair={true} onPageChange={this.handleLanguage} pagePrompter={true}/>
         </div>
       );
     }
