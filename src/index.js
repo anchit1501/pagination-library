@@ -10,7 +10,7 @@ class App extends Component {
       });
     }
     
-    handleLanguage=(e)=>{
+    handlePageUpdate=(e)=>{
       this.setState({
         value:e
       });
@@ -19,7 +19,7 @@ class App extends Component {
     render() {
       return (
         <div className="App">
-         <Pagination total={20}  nextBackPair={true} initialFinalPair={true} onPageChange={this.handleLanguage} pagePrompter={true}/>
+         <Pagination total={20}  nextBackPair={true} initialFinalPair={true} onPageChange={this.handlePageUpdate} pagePrompter={true}/>
         </div>
       );
     }
