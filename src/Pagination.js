@@ -28,7 +28,7 @@ class Pagination extends Component {
 
     }
 
-    calcPage = (id) => {
+    calcPage(id){
         if (this.state.activeIndex >= 10) {
 
         }
@@ -70,7 +70,7 @@ class Pagination extends Component {
 
     }
 
-    pageList = (initial, final) => {
+    pageList(initial, final) {
 
         if (final > this.state.length) {
             final = this.state.length;
@@ -105,7 +105,7 @@ class Pagination extends Component {
 
     }
 
-    checkActive = (number,str) => {
+    checkActive (number,str){
         if (this.state.activeIndex === number) {
             return true;
         }
@@ -114,7 +114,7 @@ class Pagination extends Component {
         }
     }
 
-    checkPrompter=(position)=>{
+    checkPrompter(position){
         if(position==='initial'){
             if(this.state.currentItems[0].props.id==1){
                 return('none');
@@ -136,7 +136,7 @@ class Pagination extends Component {
         }
     }
 
-    handleLangChange = () => {
+    handleLangChange(){
         this.props.onPageChange(this.state.activeIndex);
     }
 
