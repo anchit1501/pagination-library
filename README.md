@@ -20,21 +20,17 @@ Users can use import statement to import the Package -
 import Pagination from 'react-paginaion'
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       activePage: 15
     };
   }
-
   handlePageUpdate(e){
     console.log(e);
     this.setState({activePage:e});
   }
-
-  render() {
-    
+  render() { 
     return (
       <div>
           <Pagination 
