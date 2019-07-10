@@ -11,14 +11,13 @@ This is a Simple Pagination Library created using React js which returns the pag
 
 Install react-pagination with npm:
 
-npm i react-paginaion
+```npm i react-pagination-plugin```
 
 ## How to use
 
-Users can use import statement to import the Package -
+Use import statement to use the Package -
 
-import Pagination from 'react-paginaion'
-
+```import Pagination from 'react-paginaion'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +41,7 @@ class App extends Component {
       </div>
     );
   }
-}        
+}```       
 
 ## Props
 
