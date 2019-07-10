@@ -16,8 +16,14 @@ Install react-pagination with npm:
 ## How to use
 
 Use import statement to use the Package -
+```
+import Pagination from 'react-paginaion'
+```
 
-```import Pagination from 'react-paginaion'
+Here is a code snippet on how to use pagination module
+
+```
+import Pagination from 'react-paginaion'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +47,8 @@ class App extends Component {
       </div>
     );
   }
-}```       
+}
+```       
 
 ## Props
 
